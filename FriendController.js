@@ -1,7 +1,12 @@
 angular.module( 'app' )
 .controller( 'FriendController', function( $scope ){
   $scope.filters = filters;
-  $scope.friends = friends;
+  $scope.friends = friends.map( function( friendObj ) {
+    if ( friendObj.current_location === null ) {
+        friendObj.current_location = {};
+    }
+    return friendObj;
+  });
   $scope.directionFilters = directionFilters;
 
 });
