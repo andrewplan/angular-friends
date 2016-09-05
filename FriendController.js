@@ -3,7 +3,11 @@ angular.module( 'app' )
   $scope.filters = filters;
   $scope.friends = friends.map( function( friendObj ) {
     if ( friendObj.current_location === null ) {
-        friendObj.current_location = {};
+        friendObj.current_location = {
+            city: ''
+          , state: ''
+          , country: ''
+        };
     }
     return friendObj;
   });
