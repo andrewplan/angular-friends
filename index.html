@@ -17,23 +17,29 @@
         <input class="form-control" placeholder="Search Name" ng-model="friendFilter.name">
         <input class="form-control" placeholder="Search Location" ng-model="friendFilter.current_location.name">
 
-        <select class="input-medium" ng-model="sortProp">
-          <option value="name">Name</option>
+        <select
+          class="input-medium"
+          ng-model="sortProp"
+          ng-options="filter.value as filter.name for filter in filters">
+          <!-- <option value="name">Name</option>
           <option value="friend_count">#Friends</option>
           <option value="current_location.city">City</option>
           <option value="current_location.state">State</option>
-          <option value="current_location.country">Country</option>
+          <option value="current_location.country">Country</option> -->
         </select>
 
-        <select class="input-medium" ng-model="sortDirection">
-          <option value="+">Descending</option>
-          <option value="-">Ascending</option>
+        <select
+          class="input-medium"
+          ng-model="sortDirection"
+          ng-options="directionFilter.value as directionFilter.name for directionFilter in directionFilters">
+          <!-- <option value="+">Descending</option>
+          <option value="-">Ascending</option> -->
         </select>
 
       </div>
     </form>
 
-    <ul ng-repeat="friend in friends | filter: friendFilter | orderBy: sortProp : sortDirection">
+    <ul ng-repeat="friend in friends | filter: friendFilter | orderBy: sortDirection + sortProp">
       <li class='friend'>
         <img class="profile-pic" ng-src='{{ friend.pic_square }}'>
 
